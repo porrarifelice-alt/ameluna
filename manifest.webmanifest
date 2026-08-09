@@ -1,0 +1,9 @@
+{
+  "name": "Ameluna",
+  "short_name": "Ameluna",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07195f",
+  "theme_color": "#07195f",
+  "icons": []
+}

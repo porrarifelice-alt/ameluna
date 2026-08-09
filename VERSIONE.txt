@@ -1,0 +1,26 @@
+AMELUNA 1_00_008 – FINALIZZAZIONE
+
+Derivata esclusivamente dalla release blindata Ameluna 1_00_007.
+
+Modifiche:
+- nessuna musica aggiunta;
+- mantenuto StPageFlip per desktop/tablet;
+- aggiunto un lettore locale di fallback, usato automaticamente su smartphone;
+- smartphone: visualizzazione a pagina singola, swipe e pulsanti inferiori;
+- favicon Ameluna;
+- metadati SEO/social;
+- manifest web app;
+- robots.txt;
+- copyright già presente e mantenuto.
+
+Nota tecnica:
+StPageFlip desktop resta caricato dalla CDN nella presente build; il sito dispone però di un fallback locale
+se il motore esterno non è disponibile. Per un pacchetto StPageFlip completamente vendorizzato serve includere
+il file originale della libreria MIT nel progetto.
+
+MODIFICA HEADER:
+- pulsante 'Torna alla home' ridotto e rinominato 'Home';
+- titolo del libro spostato più a sinistra;
+- marchio 'Ameluna – Libri per il cuore e per l’anima' centrato geometricamente nella barra;
+- controlli destri mantenuti invariati;
+- nessuna modifica al lettore o ai libri.
