@@ -1,4 +1,4 @@
-
+ 
 const BOOKS = window.AMELUNA_BOOKS;
 let pageFlip = null;
 let activeBook = null;
@@ -108,7 +108,7 @@ function initBook(bookKey){
   modal.setAttribute('aria-hidden','false');
   document.body.classList.add('reader-open');
 
-  const isPhoneNow = window.matchMedia('(max-width: 620px)').matches;
+  const isPhoneNow = window.matchMedia('(max-width: 620px), (max-height: 620px) and (pointer: coarse)').matches;
   if((!window.St || !window.St.PageFlip) && !(isPhoneNow && window.AmelunaLocalMobileReader)){
     const mount = createFreshMount();
     if(window.AmelunaLocalMobileReader){
@@ -119,7 +119,7 @@ function initBook(bookKey){
       pageFlip.loadFromImages(activeBook.pages);
       return;
     }
-    mount.innerHTML = '<div style="color:white;text-align:center;padding:30px">Il lettore non è disponibile.</div>';
+    mount.innerHTML = '<div style="color:white;text-align:center;padding:30px">Il lettore non Ã¨ disponibile.</div>';
     readerBusy = false;
     return;
   }
@@ -129,7 +129,7 @@ function initBook(bookKey){
     requestAnimationFrame(() => {
       const mount = createFreshMount();
 
-      const isPhone = window.matchMedia('(max-width: 620px)').matches;
+      const isPhone = window.matchMedia('(max-width: 620px), (max-height: 620px) and (pointer: coarse)').matches;
 
       if(isPhone && window.AmelunaLocalMobileReader){
         pageFlip = new window.AmelunaLocalMobileReader(mount, {});
@@ -255,7 +255,7 @@ document.getElementById('readerLast').addEventListener('click', lastPage);
 
 document.getElementById('soundToggle').addEventListener('click', e => {
   soundOn = !soundOn;
-  e.currentTarget.innerHTML = soundOn ? '🔊 <span>ON</span>' : '🔇 <span>OFF</span>';
+  e.currentTarget.innerHTML = soundOn ? 'ðŸ”Š <span>ON</span>' : 'ðŸ”‡ <span>OFF</span>';
 });
 
 document.addEventListener('keydown', e => {
