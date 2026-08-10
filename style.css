@@ -1,4 +1,4 @@
-
+ 
 :root{
   --night:#07195f;--blue:#0d68b6;--sky:#35aee8;--gold:#ffbd16;--orange:#f08a00;
   --pink:#ed4774;--green:#68c85a;--ink:#081650;--reader-gold:#e8c46d;
@@ -234,8 +234,8 @@ body.reader-open{overflow:hidden}
   }
 }
 
-/* Tablet: Home resta corta, logo al centro; il titolo può essere nascosto
-   come nella versione responsive già prevista. */
+/* Tablet: Home resta corta, logo al centro; il titolo puÃ² essere nascosto
+   come nella versione responsive giÃ  prevista. */
 @media(min-width:621px) and (max-width:900px){
   .reader-home-compact{
     width:auto !important;
@@ -244,7 +244,7 @@ body.reader-open{overflow:hidden}
   }
 }
 
-/* Smartphone: mostra la sola parola Home se c'è spazio. */
+/* Smartphone: mostra la sola parola Home se c'Ã¨ spazio. */
 @media(max-width:620px){
   .reader-home-compact span{
     display:inline !important;
@@ -253,4 +253,102 @@ body.reader-open{overflow:hidden}
     min-width:74px;
     padding:7px 9px !important;
   }
+}
+
+/* ===== AMELUNA MOBILE READER FIX 2026-08-09 =====
+   - pagina sempre interamente visibile
+   - smartphone orizzontale resta in modalita mobile
+   - controlli compatti e separati dallo zoom della pagina
+*/
+@media (max-width:620px){
+  .physical-book{
+    width:min(94vw, calc(100dvh - 138px))!important;
+    height:auto!important;
+    aspect-ratio:1 / 1!important;
+    max-width:none!important;
+    max-height:none!important;
+  }
+  .local-mobile-reader,
+  .local-mobile-reader img{
+    width:100%!important;
+    height:100%!important;
+  }
+  .local-mobile-reader img{
+    object-fit:contain!important;
+  }
+}
+
+/* Smartphone in orizzontale: molti telefoni superano 620px di larghezza CSS.
+   La combinazione touch + altezza ridotta identifica il caso senza toccare il desktop. */
+@media (max-height:620px) and (pointer:coarse){
+  .reader-chrome{
+    grid-template-rows:52px minmax(0,1fr) 48px!important;
+    height:100dvh!important;
+    min-height:100dvh!important;
+  }
+  .reader-header{
+    height:52px!important;
+    display:grid!important;
+    grid-template-columns:auto 1fr auto!important;
+    gap:5px!important;
+    padding:0 8px!important;
+  }
+  .reader-title{display:none!important}
+  .reader-logo{
+    position:static!important;
+    transform:none!important;
+    width:auto!important;
+    min-width:0!important;
+    text-align:center!important;
+    pointer-events:none!important;
+  }
+  .reader-logo span{font-size:1.35rem!important}
+  .reader-logo small{display:none!important}
+  .reader-actions{gap:4px!important}
+  .reader-actions #readerStart{display:none!important}
+  .reader-btn{padding:6px 9px!important;font-size:.78rem!important}
+  .reader-btn.round{width:34px!important;height:34px!important}
+  .reader-home-compact{min-width:42px!important;padding:6px 9px!important}
+  .reader-home-compact span{display:none!important}
+  .reader-table{
+    grid-template-columns:1fr!important;
+    min-height:0!important;
+    padding:4px 8px!important;
+    overflow:hidden!important;
+  }
+  .book-presentation{height:100%!important;min-height:0!important}
+  .physical-book{
+    width:min(72vw, calc(100dvh - 112px))!important;
+    height:auto!important;
+    aspect-ratio:1 / 1!important;
+    max-width:none!important;
+    max-height:none!important;
+  }
+  .pageflip-mount{width:100%!important;height:100%!important;min-width:0!important;min-height:0!important}
+  .cover-border,.page-stack,.spine-shadow,.bottom-spine{display:none!important}
+  .reader-controls{
+    min-height:48px!important;
+    height:48px!important;
+    padding:4px 6px!important;
+    gap:6px!important;
+    background:#17100b!important;
+  }
+  .control-btn{
+    width:38px!important;
+    height:36px!important;
+    border-radius:13px!important;
+    font-size:1.2rem!important;
+    flex:0 0 auto!important;
+  }
+  .page-display{min-width:88px!important;font-size:.84rem!important}
+  .reader-footer{display:none!important}
+}
+
+/* Il pinch personalizzato lavora soltanto dentro la pagina; i comandi restano fissi. */
+.local-mobile-reader{touch-action:none!important;overflow:hidden!important}
+.local-mobile-reader img{
+  transform-origin:center center;
+  will-change:transform;
+  user-select:none;
+  -webkit-user-drag:none;
 }
