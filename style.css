@@ -398,3 +398,58 @@ body.reader-open{overflow:hidden}
     flex:none!important;
   }
 }
+
+/* ===== AMELUNA MOBILE LANDSCAPE FIT-COMPLETE FIX 3 - 2026-08-10 =====
+   Obiettivo:
+   - usare tutta l'area utile del lettore in orizzontale;
+   - mostrare SEMPRE l'intera pagina al caricamento (nessun taglio);
+   - rispettare il rapporto reale di ogni libro (quadrato / 4:3);
+   - lasciare pinch e pan soltanto come scelta successiva dell'utente.
+*/
+@media (max-height:620px) and (pointer:coarse){
+  .reader-table{
+    padding:3px 6px!important;
+    overflow:hidden!important;
+  }
+  .book-presentation{
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  .physical-book{
+    width:calc(100vw - 12px)!important;
+    height:calc(100dvh - 106px)!important;
+    max-width:calc(100vw - 12px)!important;
+    max-height:calc(100dvh - 106px)!important;
+    aspect-ratio:auto!important;
+    filter:none!important;
+  }
+  .pageflip-mount,
+  .local-mobile-reader{
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+  }
+  .local-mobile-reader{
+    position:relative!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+    border-radius:10px!important;
+  }
+  .local-mobile-reader img{
+    width:auto!important;
+    height:auto!important;
+    max-width:100%!important;
+    max-height:100%!important;
+    object-fit:contain!important;
+    flex:none!important;
+    transform-origin:center center!important;
+  }
+}
