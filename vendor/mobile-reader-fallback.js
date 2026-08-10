@@ -43,11 +43,21 @@
     }
     distance(a,b){ return Math.hypot(b.clientX-a.clientX,b.clientY-a.clientY); }
     clamp(v,min,max){ return Math.max(min,Math.min(max,v)); }
+    getPanBounds(){
+      const wrapW=this.wrap.clientWidth||0, wrapH=this.wrap.clientHeight||0;
+      const imgW=this.img.offsetWidth||wrapW, imgH=this.img.offsetHeight||wrapH;
+      return {
+        maxX:Math.max(0,(imgW*this.scale-wrapW)/2),
+        maxY:Math.max(0,(imgH*this.scale-wrapH)/2)
+      };
+    }
+    canPan(){
+      const b=this.getPanBounds();
+      return b.maxX>1 || b.maxY>1 || this.scale>1.001;
+    }
     applyTransform(){
-      if(this.scale<=1.001){ this.scale=1; this.tx=0; this.ty=0; }
-      const rect=this.wrap.getBoundingClientRect();
-      const maxX=Math.max(0,(rect.width*(this.scale-1))/2);
-      const maxY=Math.max(0,(rect.height*(this.scale-1))/2);
+      if(this.scale<1){ this.scale=1; }
+      const {maxX,maxY}=this.getPanBounds();
       this.tx=this.clamp(this.tx,-maxX,maxX);
       this.ty=this.clamp(this.ty,-maxY,maxY);
       this.img.style.transform=`translate3d(${this.tx}px,${this.ty}px,0) scale(${this.scale})`;
@@ -66,7 +76,7 @@
           this.dragStart=null; this.swipeStart=null;
         } else if(e.touches.length===1){
           const t=e.touches[0];
-          if(this.scale>1){ this.dragStart={x:t.clientX,y:t.clientY,tx:this.tx,ty:this.ty}; }
+          if(this.canPan()){ this.dragStart={x:t.clientX,y:t.clientY,tx:this.tx,ty:this.ty}; }
           else { this.swipeStart={x:t.clientX,y:t.clientY}; }
         }
       },{passive:false});
@@ -77,7 +87,7 @@
           const d=this.distance(e.touches[0],e.touches[1]);
           this.scale=this.clamp(this.startScale*(d/this.startDistance),1,4);
           this.applyTransform();
-        } else if(e.touches.length===1 && this.scale>1 && this.dragStart){
+        } else if(e.touches.length===1 && this.canPan() && this.dragStart){
           e.preventDefault();
           const t=e.touches[0];
           this.tx=this.dragStart.tx+(t.clientX-this.dragStart.x);
