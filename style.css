@@ -352,3 +352,49 @@ body.reader-open{overflow:hidden}
   user-select:none;
   -webkit-user-drag:none;
 }
+
+/* ===== AMELUNA MOBILE LANDSCAPE LARGE PAGE FIX 2026-08-10 =====
+   In orizzontale lo spazio di lettura usa quasi tutta la larghezza disponibile.
+   La pagina riempie la larghezza dell'area; se eccede in altezza viene esplorata
+   trascinandola, senza ingrandire i controlli.
+*/
+@media (max-height:620px) and (pointer:coarse){
+  .reader-table{
+    padding:3px 6px!important;
+  }
+  .book-presentation{
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+  }
+  .physical-book{
+    width:94vw!important;
+    height:calc(100dvh - 106px)!important;
+    aspect-ratio:auto!important;
+    max-width:94vw!important;
+    max-height:calc(100dvh - 106px)!important;
+    filter:none!important;
+  }
+  .pageflip-mount,
+  .local-mobile-reader{
+    width:100%!important;
+    height:100%!important;
+  }
+  .local-mobile-reader{
+    position:relative!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+    border-radius:10px!important;
+  }
+  .local-mobile-reader img{
+    width:100%!important;
+    height:auto!important;
+    max-width:none!important;
+    max-height:none!important;
+    object-fit:unset!important;
+    flex:none!important;
+  }
+}
